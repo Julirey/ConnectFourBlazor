@@ -33,4 +33,4 @@ A **Connect Four** game built with **Blazor**, featuring real-time move logging 
 
    ```bash
    dotnet run
-4. Open your browser to `https://localhost:5001` or `http://localhost:5000`.
+4. Open your browser to `https://localhost:{PORT}`.
