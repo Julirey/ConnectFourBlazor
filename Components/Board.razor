@@ -41,6 +41,10 @@
     }
 </div>
 
+<div class="move-log-container">
+    <MoveLog Moves=@moveLog Descending=true />
+</div>
+
 @code {
     private string[] pieces = new string[42];
     private string winnerMessage = string.Empty;
@@ -58,6 +62,9 @@
     [Parameter]
     public Color Player2Color { get; set; } = ColorTranslator.FromHtml("blue");
 
+    @* Set log of moves *@
+    private List<string> moveLog = new();
+
     protected override void OnInitialized()
     {
         State.ResetBoard();
@@ -72,6 +79,9 @@
             var turn = State.CurrentTurn;
             var landingRow = State.PlayPiece(col);
             pieces[turn] = $"player{player} col{col} drop{landingRow}";
+
+            @* Add entry to log of moves *@
+            moveLog.Add($"Turn {turn + 1}: Player {player} → Column {col + 1}, Row {landingRow}");
         }
         catch (ArgumentException ex)
         {
@@ -93,6 +103,9 @@
         winnerMessage = string.Empty;
         errorMessage = string.Empty;
         pieces = new string[42];
+        
+        @* Clear log of moves *@
+        moveLog.Clear();
     }
 
 }

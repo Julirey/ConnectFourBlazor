@@ -1,0 +1,30 @@
+.move-log-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1em;
+  background: #f8f8f8;
+  border: 1px solid #ccc;
+  overflow: hidden;
+}
+
+.move-log-table caption {
+  caption-side: top;
+  font-weight: bold;
+  font-size: 1.1em;
+  background: #e0e0e0;
+  border-bottom: 1px solid #bbb;
+  padding: 0.5em;
+  letter-spacing: 0.5px;
+}
+
+.move-log-row-even td {
+  background: rgba(0, 0, 0, 0.04);
+}
+.move-log-row-odd td {
+  background: rgba(0, 0, 0, 0.12);
+}
+.move-log-table td {
+  padding: 0.4em 0.7em;
+  border: none;
+  word-break: break-word;
+}

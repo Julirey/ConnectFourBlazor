@@ -1,0 +1,52 @@
+@using System.Collections.Generic
+
+<table class="move-log-table">
+    <caption>Move History</caption>
+    <tbody>
+        @* If the list is empty, display placeholder message. *@
+        @if (OrderedMoves.Count == 0)
+        {
+            <tr><td class="move-log-empty">No moves yet.</td></tr>
+        }
+        else
+        {
+            @* Loop through the ordered moves and render each as a table row. *@    
+            for (int i = 0; i < OrderedMoves.Count; i++)
+            {
+                <tr class="@(i % 2 == 0 ? "move-log-row-even" : "move-log-row-odd")">
+                    <td>@OrderedMoves[i]</td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>
+
+@code {
+    /// <summary>
+    /// The list of strings to display in the log.
+    /// </summary>
+    [Parameter]
+    public List<string> Moves { get; set; } = new();
+
+    /// <summary>
+    /// If true, display moves from newest to oldest (descending order).
+    /// If false, display moves from oldest to newest (ascending order).
+    /// </summary>
+    [Parameter]
+    public bool Descending { get; set; } = false;
+
+    /// <summary>
+    /// Returns the moves in the correct order for display.
+    /// </summary>
+    private List<string> OrderedMoves => GetOrderedMoves();
+
+    /// <summary>
+    /// Orders the move list according to the Descending parameter.
+    /// </summary>
+    /// <returns>List of moves in the appropiate order.</returns>
+    private List<string> GetOrderedMoves()
+    {
+        // If Descending, reverse the list so newest is first.
+        return Descending ? Moves.AsEnumerable().Reverse().ToList() : Moves;
+    }
+}
